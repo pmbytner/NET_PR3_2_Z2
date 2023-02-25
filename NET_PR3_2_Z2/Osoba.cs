@@ -10,9 +10,17 @@ namespace NET_PR3_2_Z2;
 public class Osoba : INotifyPropertyChanged
 {
 	public event PropertyChangedEventHandler? PropertyChanged;
+	private static Dictionary<string, ICollection<string>> powiązaneWłaściwości = new()
+	{
+		["Imię"] = new string[] { "ImięNazwisko" },
+		["Nazwisko"] = new string[] { "ImięNazwisko" },
+	};
 	private void NotyfikujZmianę([CallerMemberName] string? nazwaWłaściwości = null)
 	{
 		PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nazwaWłaściwości));
+		foreach(string powiązanaWłaściwość in powiązaneWłaściwości[nazwaWłaściwości])
+			PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(powiązanaWłaściwość));
+
 	}
 
 	private string
@@ -27,7 +35,6 @@ public class Osoba : INotifyPropertyChanged
 		{
 			imię = value;
 			NotyfikujZmianę();
-			NotyfikujZmianę("ImięNazwisko");
 		}
 	}
 
@@ -38,7 +45,6 @@ public class Osoba : INotifyPropertyChanged
 		{
 			nazwisko = value;
 			NotyfikujZmianę();
-			NotyfikujZmianę("ImięNazwisko");
 		}
 	}
 

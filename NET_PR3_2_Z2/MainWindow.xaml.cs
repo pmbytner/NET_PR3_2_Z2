@@ -19,7 +19,7 @@ namespace NET_PR3_2_Z2;
 /// </summary>
 public partial class MainWindow : Window
 {
-	Osoba osoba = new Osoba();
+	Osoba osoba = new Osoba() { Imię = "Adam", Nazwisko = "Mickiewicz" };
 	public MainWindow()
 	{
 		DataContext = osoba;

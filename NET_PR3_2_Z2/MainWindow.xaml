@@ -36,66 +36,45 @@
                 UpdateSourceTrigger=PropertyChanged
             }"
             />
-        <Button
+        <Label
             Grid.Row="1"
             >
-            OK
-        </Button>
+            Nazwisko:
+        </Label>
+        <TextBox
+            Grid.Column="1"
+            Grid.Row="1"
+            Text="{Binding
+                Path=Nazwisko,
+                UpdateSourceTrigger=PropertyChanged
+            }"
+            />
+
+        <Label
+            Grid.Row="2"
+            >
+            Imię i nazwisko:
+        </Label>
         <TextBlock
-            Grid.Row="1"
-            Grid.Column="1"
-            Text="{Binding Path=Imię}"
-            />
-        <Label
-            Grid.Row="2"
-            >
-            TwoWay:
-        </Label>
-        <TextBox
             Grid.Column="1"
             Grid.Row="2"
             Text="{Binding
-                Path=Imię,
-                Mode=TwoWay
+                Path=ImięNazwisko,
+                UpdateSourceTrigger=PropertyChanged
             }"
             />
+
         <Label
             Grid.Row="3"
             >
-            OneWay:
+            Imię:
         </Label>
         <TextBox
             Grid.Column="1"
             Grid.Row="3"
             Text="{Binding
                 Path=Imię,
-                Mode=OneWay
-            }"
-            />
-        <Label
-            Grid.Row="4"
-            >
-            OneTime:
-        </Label>
-        <TextBox
-            Grid.Column="1"
-            Grid.Row="4"
-            Text="{Binding
-                Path=Imię,
-                Mode=OneTime
-            }"
-            />
-        <Label
-            Grid.Row="5"
-            >
-            OneWayToSource:
-        </Label>
-        <TextBox
-            Grid.Column="1"
-            Grid.Row="5"
-            Text="{Binding
-                Path=Imię,
-                Mode=OneWayToSource
+                UpdateSourceTrigger=PropertyChanged
             }"
             />
     </Grid>

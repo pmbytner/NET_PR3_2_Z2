@@ -14,13 +14,21 @@ public class Osoba : INotifyPropertyChanged
 	{
 		["Imię"] = new string[] { "ImięNazwisko" },
 		["Nazwisko"] = new string[] { "ImięNazwisko" },
+		["ImięNazwisko"] = new string[] { "FormatWitaj" }
 	};
-	private void NotyfikujZmianę([CallerMemberName] string? nazwaWłaściwości = null)
+	private void NotyfikujZmianę(
+		[CallerMemberName] string? nazwaWłaściwości = null,
+		HashSet<string> jużZałatwione = null
+		)
 	{
+		if (jużZałatwione == null)
+			jużZałatwione = new();
 		PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nazwaWłaściwości));
-		foreach(string powiązanaWłaściwość in powiązaneWłaściwości[nazwaWłaściwości])
-			PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(powiązanaWłaściwość));
-
+		jużZałatwione.Add(nazwaWłaściwości);
+		if(powiązaneWłaściwości.ContainsKey(nazwaWłaściwości))
+			foreach (string powiązanaWłaściwość in powiązaneWłaściwości[nazwaWłaściwości])
+				if(jużZałatwione.Contains(powiązanaWłaściwość) == false)
+					NotyfikujZmianę(powiązanaWłaściwość, jużZałatwione);
 	}
 
 	private string
@@ -49,5 +57,5 @@ public class Osoba : INotifyPropertyChanged
 	}
 
 	public string ImięNazwisko => $"{Imię} {Nazwisko}";
-
+	public string FormatWitaj => $"Witaj, {ImięNazwisko}!";
 }

@@ -24,6 +24,7 @@
             <RowDefinition/>
             <RowDefinition/>
             <RowDefinition/>
+            <RowDefinition/>
         </Grid.RowDefinitions>
 
         <Label>
@@ -58,10 +59,7 @@
         <TextBlock
             Grid.Column="1"
             Grid.Row="2"
-            Text="{Binding
-                Path=ImięNazwisko,
-                UpdateSourceTrigger=PropertyChanged
-            }"
+            Text="{Binding ImięNazwisko}"
             />
 
         <TextBlock
@@ -71,6 +69,39 @@
                 Path=FormatWitaj,
                 UpdateSourceTrigger=PropertyChanged
             }"
+            />
+        
+        <Label
+            Grid.Row="4"
+            >
+            Data urodzenia:
+        </Label>
+        <DatePicker
+            Grid.Column="1"
+            Grid.Row="4"
+            SelectedDate="{Binding DataUrodzenia}"
+            />
+
+        <Label
+            Grid.Row="5"
+            >
+            Data śmierci:
+        </Label>
+        <DatePicker
+            Grid.Column="1"
+            Grid.Row="5"
+            SelectedDate="{Binding DataŚmierci}"
+            />
+        
+        <Label
+            Grid.Row="6"
+            >
+            Wiek:
+        </Label>
+        <TextBlock
+            Grid.Column="1"
+            Grid.Row="6"
+            Text="{Binding Wiek}"
             />
     </Grid>
 </Window>

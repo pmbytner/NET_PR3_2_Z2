@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -19,15 +20,37 @@ namespace NET_PR3_2_Z2;
 /// </summary>
 public partial class ListaOsób : Window
 {
-	public ObservableCollection<Osoba> Osoby { get; } = new ObservableCollection<Osoba>()
-	{
-		new() { Imię="Adam", Nazwisko="Mickiewicz", DataUrodzenia=DateTime.Parse("01.01.1701") },
-		new() { Imię="Juliusz", Nazwisko="Słowacki" }
-	};
+	public ObservableCollection<Osoba> Osoby { get; } = new ObservableCollection<Osoba>();
+
+	private ListBox lista;
 
 	public ListaOsób()
 	{
-		DataContext= this;
+		DataContext = this;
 		InitializeComponent();
+		lista = (ListBox)FindName("Lista");
+	}
+
+	private void Edytuj(object sender, RoutedEventArgs e)
+	{
+		new WidokOsoby(
+			(Osoba)lista.SelectedItem
+			)
+			.Show();
+	}
+
+	private void Dodaj(object sender, RoutedEventArgs e)
+	{
+		Osoba nowa = new();
+		Osoby.Add(nowa);
+		new WidokOsoby(nowa)
+			.Show();
+	}
+
+	private void Usuń(object sender, RoutedEventArgs e)
+	{
+		Osoby.Remove(
+			(Osoba)lista.SelectedItem
+			);
 	}
 }

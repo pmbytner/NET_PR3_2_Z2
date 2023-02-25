@@ -14,9 +14,10 @@ public class Osoba : INotifyPropertyChanged
 	{
 		["Imię"] = new string[] { "ImięNazwisko" },
 		["Nazwisko"] = new string[] { "ImięNazwisko" },
-		["ImięNazwisko"] = new string[] { "FormatWitaj" },
+		["ImięNazwisko"] = new string[] { "FormatWitaj", "SkrótSzczegółów" },
 		["DataUrodzenia"] = new string[] { "Wiek" },
-		["DataŚmierci"] = new string[] { "Wiek" }
+		["DataŚmierci"] = new string[] { "Wiek" },
+		["Wiek"] = new string[] { "SkrótSzczegółów" }
 	};
 	private void NotyfikujZmianę(
 		[CallerMemberName] string? nazwaWłaściwości = null,
@@ -85,10 +86,13 @@ public class Osoba : INotifyPropertyChanged
 	{
 		get
 		{
+			string prefiks = "";
+			if (dataŚmierci != null)
+				prefiks = "[*] ";
 			if (dataUrodzenia == null)
-				return ImięNazwisko;
+				return prefiks + ImięNazwisko;
 			else
-				return $"{ImięNazwisko}, {Wiek} lat(a)";
+				return $"{prefiks}{ImięNazwisko}, {Wiek} lat(a)";
 		}
 	}
 	public ushort? Wiek {

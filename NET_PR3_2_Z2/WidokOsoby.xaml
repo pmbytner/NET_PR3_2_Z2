@@ -22,6 +22,7 @@
             <RowDefinition/>
             <RowDefinition/>
             <RowDefinition/>
+            <RowDefinition/>
         </Grid.RowDefinitions>
 
         <Label>
@@ -69,5 +70,12 @@
             Grid.Row="3"
             SelectedDate="{Binding DataŚmierci}"
             />
+
+        <Button
+            Grid.ColumnSpan="2"
+            Grid.Row="4" Click="OK"
+            >
+            OK
+        </Button>
     </Grid>
 </Window>

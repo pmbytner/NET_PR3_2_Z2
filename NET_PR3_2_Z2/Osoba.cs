@@ -81,6 +81,16 @@ public class Osoba : INotifyPropertyChanged
 
 	public string ImięNazwisko => $"{Imię} {Nazwisko}";
 	public string FormatWitaj => $"Witaj, {ImięNazwisko}!";
+	public string SkrótSzczegółów
+	{
+		get
+		{
+			if (dataUrodzenia == null)
+				return ImięNazwisko;
+			else
+				return $"{ImięNazwisko}, {Wiek} lat(a)";
+		}
+	}
 	public ushort? Wiek {
 		get
 		{

@@ -17,10 +17,10 @@ namespace NET_PR3_2_Z2;
 /// <summary>
 /// Interaction logic for MainWindow.xaml
 /// </summary>
-public partial class MainWindow : Window
+public partial class WidokOsoby : Window
 {
 	Osoba osoba = new Osoba() { Imię = "Adam", Nazwisko = "Mickiewicz" };
-	public MainWindow()
+	public WidokOsoby()
 	{
 		DataContext = osoba;
 		InitializeComponent();
